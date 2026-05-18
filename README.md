@@ -30,10 +30,5 @@ To watch the test in a visible, slower English/US browser session:
 npm run test:demo
 ```
 
-The suite uses these defaults:
-
-- `DEMO_APP_URL=https://animated-gingersnap-8cf7f2.netlify.app/`
-- `DEMO_APP_USERNAME=admin`
-- `DEMO_APP_PASSWORD=password123`
 
 Override them with environment variables when needed.
