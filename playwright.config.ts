@@ -15,6 +15,11 @@ export default defineConfig({
   ],
   use: {
     baseURL: process.env.DEMO_APP_URL ?? 'https://animated-gingersnap-8cf7f2.netlify.app/',
+    locale: 'en-US',
+    timezoneId: 'America/New_York',
+    launchOptions: {
+      slowMo: Number(process.env.PLAYWRIGHT_SLOW_MO ?? 300),
+    },
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

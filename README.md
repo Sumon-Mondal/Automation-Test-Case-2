@@ -7,6 +7,10 @@ Playwright automation suite for the Demo App scenario:
 3. Verify `Fix navigation bug` is in the `To Do` column.
 4. Confirm the task has the `Bug` tag.
 
+The plain-English test case is in:
+
+`features/automation-test-case-2.feature`
+
 ## Setup
 
 ```sh
@@ -18,6 +22,12 @@ npx playwright install chromium
 
 ```sh
 npm test
+```
+
+To watch the test in a visible, slower English/US browser session:
+
+```sh
+npm run test:demo
 ```
 
 The suite uses these defaults:

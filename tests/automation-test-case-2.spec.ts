@@ -5,16 +5,29 @@ const credentials = {
   password: process.env.DEMO_APP_PASSWORD ?? 'password123',
 };
 
+const demoStepDelayMs = Number(process.env.DEMO_STEP_DELAY_MS ?? 700);
+
+async function pauseForDemo(page: Page) {
+  if (demoStepDelayMs > 0) {
+    await page.waitForTimeout(demoStepDelayMs);
+  }
+}
+
 async function loginToDemoApp(page: Page) {
   await page.goto('/');
+  await pauseForDemo(page);
   await page.getByLabel('Username').fill(credentials.username);
+  await pauseForDemo(page);
   await page.getByLabel('Password').fill(credentials.password);
+  await pauseForDemo(page);
   await page.getByRole('button', { name: 'Sign in' }).click();
+  await pauseForDemo(page);
 }
 
 async function navigateToProject(page: Page, projectName: string) {
   await page.getByRole('button', { name: new RegExp(projectName) }).click();
   await expect(page.getByRole('banner').getByRole('heading', { name: projectName })).toBeVisible();
+  await pauseForDemo(page);
 }
 
 function getColumn(page: Page, columnName: string): Locator {
@@ -43,10 +56,12 @@ test.describe('Automation Test Case 2', () => {
 
     await test.step('Verify Fix navigation bug is in the To Do column', async () => {
       await expect(task).toBeVisible();
+      await pauseForDemo(page);
     });
 
     await test.step('Confirm tag is Bug', async () => {
       await expect(task.getByText('Bug', { exact: true })).toBeVisible();
+      await pauseForDemo(page);
     });
   });
 });
